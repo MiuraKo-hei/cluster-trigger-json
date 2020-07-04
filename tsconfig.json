@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "esModuleInterop": true,
+    "module": "commonjs",
+    "jsx": "react",
+    "strict": true,
+    "noEmit": true,
+    "resolveJsonModule": true,
+    "strictBindCallApply": true,
+    "strictFunctionTypes": true,
+    "moduleResolution": "node",
+    "skipLibCheck": true,
+    "lib": ["DOM", "ES2015"],
+    "allowJs": false,
+    "baseUrl": "./",
+    "typeRoots": ["@types", "node_modules/@types"]
+  },
+  "include": ["./src/**/*.ts", "./src/**/*.tsx"]
+}
