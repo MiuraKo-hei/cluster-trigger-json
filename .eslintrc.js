@@ -12,7 +12,11 @@ module.exports = {
   parser: "@typescript-eslint/parser",
   plugins: ["@typescript-eslint", "react"],
   rules: {
+    "@typescript-eslint/ban-ts-comment": 0,
+    "react/jsx-props-no-spreading": 0,
+    "react/prop-types": 0,
     "react/jsx-filename-extension": [1, { extensions: [".tsx", ".jsx"] }],
+    "import/prefer-default-export": 0,
     "import/extensions": [
       2,
       "ignorePackages",

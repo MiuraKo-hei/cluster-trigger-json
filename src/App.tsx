@@ -3,23 +3,26 @@ import {
   MuiThemeProvider,
   StylesProvider as MuiStylesProvider,
 } from "@material-ui/core/styles";
-import styled, {
-  ThemeProvider as StyledThemeProvider,
-} from "styled-components";
-import { Typography } from "@material-ui/core";
+
+import CssBaseline from "@material-ui/core/CssBaseline";
+
+import { ThemeProvider as StyledThemeProvider } from "styled-components";
 import theme from "./theme";
 
-const Title = styled(Typography).attrs({ variant: "h2" })``;
+import TriggerTool from "./components/TriggerTool";
 
 const App: React.FunctionComponent = () => {
   return (
-    <MuiStylesProvider injectFirst>
-      <StyledThemeProvider theme={theme}>
-        <MuiThemeProvider theme={theme}>
-          <Title>Hello React</Title>
-        </MuiThemeProvider>
-      </StyledThemeProvider>
-    </MuiStylesProvider>
+    <>
+      <CssBaseline />
+      <MuiStylesProvider injectFirst>
+        <StyledThemeProvider theme={theme}>
+          <MuiThemeProvider theme={theme}>
+            <TriggerTool />
+          </MuiThemeProvider>
+        </StyledThemeProvider>
+      </MuiStylesProvider>
+    </>
   );
 };
 
