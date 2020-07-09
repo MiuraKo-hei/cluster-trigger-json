@@ -144,7 +144,7 @@ const State: React.FunctionComponent<Props> = ({
           <Field name={`triggers.${triggerIndex}.state.${stateIndex}.value`}>
             {({ field }: FieldProps) => (
               <FormControlLabel
-                control={<Checkbox color="primary" {...field} />}
+                control={<Checkbox checked={Boolean(field.value)} {...field} />}
                 label="true"
               />
             )}

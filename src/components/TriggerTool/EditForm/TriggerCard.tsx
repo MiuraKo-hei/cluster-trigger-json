@@ -113,7 +113,9 @@ const TriggerCard: React.FunctionComponent<Props> = ({
             <Field name={`triggers.${triggerIndex}.showConfirmDialog`}>
               {({ field }: FieldProps) => (
                 <FormControlLabel
-                  control={<Checkbox color="primary" {...field} />}
+                  control={
+                    <Checkbox checked={Boolean(field.value)} {...field} />
+                  }
                   label="ダイアログ有り"
                 />
               )}
