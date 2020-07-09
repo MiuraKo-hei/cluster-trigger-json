@@ -65,7 +65,6 @@ const StyledCardContent = styled(CardContent)`
   }
 `;
 const StateWrapper = styled("div")`
-  padding-left: ${({ theme }) => theme.spacing(4)};
   & > *:not(:last-child) {
     margin-bottom: ${({ theme }) => theme.spacing(2)};
   }

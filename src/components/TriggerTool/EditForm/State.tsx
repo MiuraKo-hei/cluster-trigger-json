@@ -24,6 +24,12 @@ const Label = styled(Typography).attrs({ variant: "body1" })<{
     color: ${(props) => props.theme.palette.secondary.main};
   }
 `;
+const CloseButton = styled(IconButton)`
+  position: absolute;
+  right: ${(props) => props.theme.spacing(1)};
+  top: ${(props) => props.theme.spacing(1)};
+  color: ${(props) => props.theme.palette.grey[500]};
+`;
 const Container = styled(Paper)`
   position: relative;
   padding: ${({ theme }) => theme.spacing(2, 4)};
@@ -34,12 +40,9 @@ const Container = styled(Paper)`
     margin-right: ${({ theme }) => theme.spacing(4)};
     margin-bottom: ${({ theme }) => theme.spacing(2)};
   }
-`;
-const CloseButton = styled(IconButton)`
-  position: absolute;
-  right: ${(props) => props.theme.spacing(1)};
-  top: ${(props) => props.theme.spacing(1)};
-  color: ${(props) => props.theme.palette.grey[500]};
+  & > ${CloseButton} {
+    margin: 0;
+  }
 `;
 const FieldWrapper = styled("div")``;
 type Props = {
