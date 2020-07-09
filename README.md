@@ -1,2 +1,1 @@
-# home
-homepage
+https://miurako-hei.github.io/cluster-trigger-json/index.html
