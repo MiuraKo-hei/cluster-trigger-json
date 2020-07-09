@@ -10,7 +10,7 @@ const TriggerTool: React.FunctionComponent = () => {
     <Wrapper>
       <AppBar>
         <Toolbar>
-          <Typography variant="h6">トリガー用JSON編集ツール</Typography>
+          <Typography variant="h6">JSON編集ツール</Typography>
         </Toolbar>
       </AppBar>
       <Container>
