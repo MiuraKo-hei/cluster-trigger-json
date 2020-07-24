@@ -1,18 +1,15 @@
 import React from "react";
-import { Container, Typography, AppBar, Toolbar } from "@material-ui/core";
+import { Container } from "@material-ui/core";
 import styled from "styled-components";
 import EditForm from "./EditForm";
+import Header from "./Header";
 
 const Wrapper = styled("div")``;
 
 const TriggerTool: React.FunctionComponent = () => {
   return (
     <Wrapper>
-      <AppBar>
-        <Toolbar>
-          <Typography variant="h6">JSON編集ツール</Typography>
-        </Toolbar>
-      </AppBar>
+      <Header />
       <Container>
         <EditForm />
       </Container>
