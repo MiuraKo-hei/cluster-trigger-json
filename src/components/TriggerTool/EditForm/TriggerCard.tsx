@@ -27,9 +27,9 @@ const NameAndCategory = styled("div")`
   display: flex;
   flex-wrap: wrap;
   & > * {
-    margin-bottom: ${({ theme }) => theme.spacing(2)};
+    margin-bottom: ${({ theme }) => theme.spacing(1)};
     &:not(:last-child) {
-      margin-right: ${({ theme }) => theme.spacing(4)};
+      margin-right: ${({ theme }) => theme.spacing(2)};
     }
   }
 `;
@@ -58,7 +58,7 @@ const Label = styled(Typography).attrs({ variant: "body1" })<{
 `;
 const StyledCardContent = styled(CardContent)`
   & > *:not(:last-child) {
-    margin-bottom: ${({ theme }) => theme.spacing(2)};
+    margin-bottom: ${({ theme }) => theme.spacing(1)};
   }
   & > ${NameAndCategory} {
     margin-bottom: ${({ theme }) => theme.spacing(0)};

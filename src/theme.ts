@@ -30,6 +30,7 @@ export default createMuiTheme({
     MuiFormControl: {
       root: {
         display: "block",
+        width: "160px",
       },
     },
   },
