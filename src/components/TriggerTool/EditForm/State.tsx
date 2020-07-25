@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import {
   TextField,
   Checkbox,
@@ -32,19 +32,33 @@ const CloseButton = styled(IconButton)`
 `;
 const Container = styled(Paper)`
   position: relative;
-  padding: ${({ theme }) => theme.spacing(2, 4)};
+  padding: ${({ theme }) => theme.spacing(2, 3)};
   display: flex;
   flex-wrap: wrap;
 
-  & > *:not(:last-child) {
-    margin-right: ${({ theme }) => theme.spacing(4)};
-    margin-bottom: ${({ theme }) => theme.spacing(2)};
+  & > * {
+    margin-bottom: ${({ theme }) => theme.spacing(1)};
+    &:not(:last-child) {
+      margin-right: ${({ theme }) => theme.spacing(2)};
+    }
   }
   & > ${CloseButton} {
     margin: 0;
   }
 `;
+const StyledSelect = styled(Select)`
+  width: 120px;
+`;
 const FieldWrapper = styled("div")``;
+const valueFieldStyle = css`
+  width: 120px;
+`;
+const ValueTextField = styled(TextField)`
+  ${valueFieldStyle}
+`;
+const ValueFormControlLabel = styled(FormControlLabel)`
+  ${valueFieldStyle}
+`;
 type Props = {
   triggerIndex: number;
   stateIndex: number;
@@ -73,7 +87,7 @@ const State: React.FunctionComponent<Props> = ({
         <Label required>type</Label>
         <Field name={`triggers.${triggerIndex}.state.${stateIndex}.type`}>
           {({ field, form }: FieldProps) => (
-            <Select
+            <StyledSelect
               {...field}
               onChange={({ target }) => {
                 switch (target.value) {
@@ -123,7 +137,7 @@ const State: React.FunctionComponent<Props> = ({
               <MenuItem value={TriggerType.integer}>integer</MenuItem>
               <MenuItem value={TriggerType.float}>float</MenuItem>
               <MenuItem value={TriggerType.signal}>signal</MenuItem>
-            </Select>
+            </StyledSelect>
           )}
         </Field>
       </FieldWrapper>
@@ -133,7 +147,7 @@ const State: React.FunctionComponent<Props> = ({
           <Label required>value</Label>
           <Field name={`triggers.${triggerIndex}.state.${stateIndex}.value`}>
             {({ field }: FieldProps) => (
-              <TextField {...field} type="number" required />
+              <ValueTextField {...field} type="number" required />
             )}
           </Field>
         </FieldWrapper>
@@ -143,7 +157,7 @@ const State: React.FunctionComponent<Props> = ({
           <Label>value</Label>
           <Field name={`triggers.${triggerIndex}.state.${stateIndex}.value`}>
             {({ field }: FieldProps) => (
-              <FormControlLabel
+              <ValueFormControlLabel
                 control={<Checkbox checked={Boolean(field.value)} {...field} />}
                 label="true"
               />
