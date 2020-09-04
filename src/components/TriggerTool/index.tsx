@@ -3,8 +3,13 @@ import { Container } from "@material-ui/core";
 import styled from "styled-components";
 import EditForm from "./EditForm";
 import Header from "./Header";
+import Footer from "./Footer";
 
-const Wrapper = styled("div")``;
+const Wrapper = styled("div")`
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+`;
 
 const TriggerTool: React.FunctionComponent = () => {
   return (
@@ -13,6 +18,7 @@ const TriggerTool: React.FunctionComponent = () => {
       <Container>
         <EditForm />
       </Container>
+      <Footer />
     </Wrapper>
   );
 };
