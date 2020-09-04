@@ -3,7 +3,7 @@ import { Formik, FieldArray, Form } from "formik";
 import { Button } from "@material-ui/core";
 import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
 import styled from "styled-components";
-import { Trigger, JsonFormat } from "../../../types/Trigger";
+import { Trigger, JsonFormat, TriggerType } from "../../../types/Trigger";
 import TriggerCard from "./TriggerCard";
 import {
   triggersToTriggerJsonText,
@@ -25,7 +25,21 @@ const ButtonsArea = styled("div")`
 `;
 const EditForm: React.FunctionComponent = () => {
   const [initialValues, setInitialValues] = useState<{ triggers: Trigger[] }>({
-    triggers: [],
+    triggers: [
+      {
+        displayName: "",
+        category: "",
+        showConfirmDialog: false,
+        color: { r: 256, g: 256, b: 256 },
+        state: [
+          {
+            key: "",
+            type: TriggerType.integer,
+            value: 0,
+          },
+        ],
+      },
+    ],
   });
   const loadJsonFile = () => {
     const fr = new FileReader();
