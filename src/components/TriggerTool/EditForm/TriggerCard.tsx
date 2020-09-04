@@ -10,7 +10,10 @@ import {
   IconButton,
 } from "@material-ui/core";
 import CloseIcon from "@material-ui/icons/Close";
+import ArrowUpwardIcon from "@material-ui/icons/ArrowUpward";
+import PostAddIcon from "@material-ui/icons/PostAdd";
 
+import ArrowDownwardIcon from "@material-ui/icons/ArrowDownward";
 import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
 import { Field, FieldProps, FieldArray } from "formik";
 import styled from "styled-components";
@@ -70,11 +73,20 @@ const StateWrapper = styled("div")`
   }
 `;
 
-const CloseButton = styled(IconButton)`
+const Buttons = styled("div")`
+  display: flex;
   position: absolute;
   right: ${(props) => props.theme.spacing(1)};
   top: ${(props) => props.theme.spacing(1)};
-  color: ${(props) => props.theme.palette.grey[500]};
+`;
+const ButtonBase = styled(IconButton).attrs({ size: "small" })``;
+const CloseButton = styled(ButtonBase)``;
+const DownButton = styled(ButtonBase)`
+  margin-right: ${({ theme }) => theme.spacing(2)};
+`;
+const UpButton = styled(ButtonBase)``;
+const DuplicationButton = styled(ButtonBase)`
+  margin-right: ${({ theme }) => theme.spacing(2)};
 `;
 const FieldWrapper = styled("div")``;
 
@@ -82,18 +94,39 @@ type Props = {
   triggerIndex: number;
   trigger: Trigger;
   remove: () => void;
+  isFirst: boolean;
+  isLast: boolean;
+  moveUp: () => void;
+  moveDown: () => void;
+  duplication: () => void;
 };
 
 const TriggerCard: React.FunctionComponent<Props> = ({
   triggerIndex,
   trigger,
   remove,
+  isFirst,
+  isLast,
+  moveUp,
+  moveDown,
+  duplication,
 }) => {
   return (
     <StyledCard triggerColor={trigger.color}>
-      <CloseButton onClick={remove}>
-        <CloseIcon />
-      </CloseButton>
+      <Buttons>
+        <DuplicationButton onClick={duplication}>
+          <PostAddIcon />
+        </DuplicationButton>
+        <UpButton disabled={isFirst} onClick={moveUp}>
+          <ArrowUpwardIcon />
+        </UpButton>
+        <DownButton disabled={isLast} onClick={moveDown}>
+          <ArrowDownwardIcon />
+        </DownButton>
+        <CloseButton onClick={remove}>
+          <CloseIcon />
+        </CloseButton>
+      </Buttons>
       <StyledCardContent>
         <NameAndCategory>
           <FieldWrapper>
@@ -150,6 +183,20 @@ const TriggerCard: React.FunctionComponent<Props> = ({
                       state={state}
                       remove={() => {
                         arrayHelpers.remove(stateIndex);
+                      }}
+                      isFirst={stateIndex === 0}
+                      isLast={stateIndex === trigger.state.length - 1}
+                      moveUp={() => {
+                        arrayHelpers.swap(stateIndex, stateIndex - 1);
+                      }}
+                      moveDown={() => {
+                        arrayHelpers.swap(stateIndex, stateIndex + 1);
+                      }}
+                      duplication={() => {
+                        arrayHelpers.insert(stateIndex + 1, {
+                          ...state,
+                          key: `${state.key}_copy`,
+                        });
                       }}
                     />
                   ))}

@@ -12,6 +12,10 @@ import {
 } from "@material-ui/core";
 import { Field, FieldProps } from "formik";
 import CloseIcon from "@material-ui/icons/Close";
+import ArrowUpwardIcon from "@material-ui/icons/ArrowUpward";
+import PostAddIcon from "@material-ui/icons/PostAdd";
+
+import ArrowDownwardIcon from "@material-ui/icons/ArrowDownward";
 import { TriggerType, TriggerState } from "../../../types/Trigger";
 
 const Label = styled(Typography).attrs({ variant: "body1" })<{
@@ -24,11 +28,20 @@ const Label = styled(Typography).attrs({ variant: "body1" })<{
     color: ${(props) => props.theme.palette.secondary.main};
   }
 `;
-const CloseButton = styled(IconButton)`
+const Buttons = styled("div")`
   position: absolute;
   right: ${(props) => props.theme.spacing(1)};
   top: ${(props) => props.theme.spacing(1)};
-  color: ${(props) => props.theme.palette.grey[500]};
+  display: flex;
+`;
+const ButtonBase = styled(IconButton).attrs({ size: "small" })``;
+const CloseButton = styled(ButtonBase)``;
+const DownButton = styled(ButtonBase)`
+  margin-right: ${({ theme }) => theme.spacing(2)};
+`;
+const UpButton = styled(ButtonBase)``;
+const DuplicationButton = styled(ButtonBase)`
+  margin-right: ${({ theme }) => theme.spacing(2)};
 `;
 const Container = styled(Paper)`
   position: relative;
@@ -64,6 +77,11 @@ type Props = {
   stateIndex: number;
   state: TriggerState;
   remove: () => void;
+  isFirst: boolean;
+  isLast: boolean;
+  moveUp: () => void;
+  moveDown: () => void;
+  duplication: () => void;
 };
 
 const State: React.FunctionComponent<Props> = ({
@@ -71,12 +89,28 @@ const State: React.FunctionComponent<Props> = ({
   stateIndex,
   state,
   remove,
+  isFirst,
+  isLast,
+  moveUp,
+  moveDown,
+  duplication,
 }) => {
   return (
     <Container>
-      <CloseButton onClick={remove}>
-        <CloseIcon />
-      </CloseButton>
+      <Buttons>
+        <DuplicationButton onClick={duplication}>
+          <PostAddIcon />
+        </DuplicationButton>
+        <UpButton disabled={isFirst} onClick={moveUp}>
+          <ArrowUpwardIcon />
+        </UpButton>
+        <DownButton disabled={isLast} onClick={moveDown}>
+          <ArrowDownwardIcon />
+        </DownButton>
+        <CloseButton onClick={remove}>
+          <CloseIcon />
+        </CloseButton>
+      </Buttons>
       <FieldWrapper>
         <Label required>key</Label>
         <Field name={`triggers.${triggerIndex}.state.${stateIndex}.key`}>

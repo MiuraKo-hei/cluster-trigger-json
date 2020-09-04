@@ -102,6 +102,20 @@ const EditForm: React.FunctionComponent = () => {
                         remove={() => {
                           arrayHelpers.remove(triggerIndex);
                         }}
+                        isFirst={triggerIndex === 0}
+                        isLast={triggerIndex === values.triggers.length - 1}
+                        moveUp={() => {
+                          arrayHelpers.swap(triggerIndex, triggerIndex - 1);
+                        }}
+                        moveDown={() => {
+                          arrayHelpers.swap(triggerIndex, triggerIndex + 1);
+                        }}
+                        duplication={() => {
+                          arrayHelpers.insert(triggerIndex + 1, {
+                            ...trigger,
+                            displayName: `${trigger.displayName}_copy`,
+                          });
+                        }}
                       />
                     ))}
                   </CardWrapper>
