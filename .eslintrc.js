@@ -1,16 +1,16 @@
 module.exports = {
   extends: [
-    "airbnb",
-    "plugin:prettier/recommended",
+    "eslint:recommended",
     "plugin:import/typescript",
     "plugin:@typescript-eslint/recommended",
+    "plugin:prettier/recommended",
   ],
   env: {
     browser: true,
     node: true,
   },
   parser: "@typescript-eslint/parser",
-  plugins: ["@typescript-eslint", "react"],
+  plugins: ["import", "jsx-a11y", "react-hooks", "@typescript-eslint", "react"],
   rules: {
     "@typescript-eslint/ban-ts-comment": 0,
     "react/jsx-props-no-spreading": 0,
